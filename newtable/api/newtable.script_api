@@ -1,0 +1,19 @@
+- name: newtable
+  type: table
+  desc: Utilize Lua C API to create a Lua Table with specified narr and nrec, to avoid rehashings and enhance arena paradigm.
+  members:
+  - name: newtable
+    type: function
+    desc: Creates a Lua Table with specified narr and nrec.
+    parameters:
+    - name: narr
+      type: number
+      desc: Specifies how many elements for the Array part of the new Table.
+    - name: nrec
+      type: number
+      desc: Specifies how many elements for the Hash part of the new Table.
+    # 如果成员是 "function"
+    returns:
+    - name: result
+      type: table
+      desc: The created Table.
