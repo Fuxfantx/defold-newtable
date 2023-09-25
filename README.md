@@ -10,7 +10,7 @@ Defold Lua Table utils for usages below:
 
 1. Copy the `tableutil` volume into your project.
 
-2. `Require` the module in the script file:
+2. `Require` the module in your script file:
    
    ```lua
    local tu = require("tableutil.main")
