@@ -21,7 +21,7 @@ end
 
 local LENMETA = {
 	__index = function(self,key)
-		if key==str_discard and _lenhashs[1]>1 then
+		if key == str_discard then
 			return _discard
 		else
 			_local = _lenhashs[1] + 1
