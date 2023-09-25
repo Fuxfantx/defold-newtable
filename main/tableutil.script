@@ -1,0 +1,21 @@
+local tu = require("tableutil.main")
+local NewTable = tu.newtable
+local TableUpdateSize = tu.tableupdatesize
+local TableAppend = tu.tableappend
+local LEN = tu.LEN
+
+local t1 = NewTable(4,0)
+for i = 1,4 do TableAppend(t1,i) end
+print( LEN[t1] )
+print( LEN.discard )
+
+for i = 1, LEN[t1] do
+	t1[i] = nil
+end
+TableUpdateSize(t1)
+
+print( #t1 )
+print( LEN[t1] )
+
+LEN.discard()
+pprint(LEN)
