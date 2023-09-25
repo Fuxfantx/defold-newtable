@@ -1,7 +1,0 @@
-function init(self)
-	local NewTable = newtable.newtable
-	self.a_table_with_16_arr_element = NewTable(16,0)
-	self.a_table_with_8_hash_element = NewTable(0,8)
-	pprint(self.a_table_with_16_arr_element)
-	pprint(self.a_table_with_8_hash_element)
-end
