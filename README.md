@@ -24,7 +24,7 @@ Defold Lua Table utils for usages below:
 --   tableupdatesize(table)        -> Update the length cache.
 --   tableappend(table,value)    -> Append an element, and then update the length cache.
 --   LEN.discard()                -> Discard the current length cache.
---   LEN[table]                    -> Replace "#table" with this.local NewTable = newtable.newtable
+--   LEN[table]                    -> Replace "#table" with this.
 
 local tu = require("tableutil.main")
 local NewTable = tu.newtable
