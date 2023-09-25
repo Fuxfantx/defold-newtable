@@ -4,7 +4,7 @@ Defold Lua Table utils for usages below:
 
 - Create sized Lua Table to avoid rehashing and enhance the arena paradigm;
 
-- Cache Table Length to avoid the `O(logn)` cost with the `#` operator.
+- Cache Table Length to avoid the `O(logn)` cost of the `#` operator.
 
 ## Installation
 
