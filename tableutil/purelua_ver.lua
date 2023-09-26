@@ -27,7 +27,7 @@ M.tableappend = function(t,value)
 	_lentbl[t] = l
 	t[l] = value
 end
-M.lcdiscard = function() _lentbl = {}; gc(s) end
+M.lcdiscard = function() _lentbl = smt({}, LENMETA); gc(s) end
 M.LEN = smt(_lentbl, LENMETA)
 
 return M
