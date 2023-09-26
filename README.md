@@ -30,6 +30,7 @@ local tu = require("tableutil.main")
 local NewTable = tu.newtable
 local TableUpdateSize = tu.tableupdatesize
 local TableAppend = tu.tableappend
+local LCDiscard = tu.lcdiscard
 local LEN = tu.LEN
 
 function init(self)
@@ -50,6 +51,6 @@ TableUpdateSize(t1)
 print( #t1 )
 print( LEN[t1] )
 
-lcdiscard()
+LCDiscard()
 pprint(LEN)
 ```
