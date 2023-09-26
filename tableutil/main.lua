@@ -5,56 +5,35 @@
 --   newtable(narr,nrec)		-> Create a Lua Table with specified ArrayPart size and HashPart size.
 --   tableupdatesize(table)		-> Update the length cache.
 --   tableappend(table,value)	-> Append an element, and then update the length cache.
---   LEN.discard()				-> Discard the current length cache.
+--   lcdiscard()				-> Discard the current length cache.
 --   LEN[table]					-> Replace "#table" with this.
 --
 local M = {}
 
 -- A. LuaC Table Creating API to avoid rehashing and optimize the arena paradigm.
 -- 
-local newtable, smt = __NEWTABLE__, setmetatable
+local newtable, smt, gc, s = __NEWTABLE__, setmetatable, collectgarbage, "collect"
 __NEWTABLE__ = nil
 
 -- B. Table Length Cacheing to avoid the O(logn) cost with the "#" operator.
 -- 
-local str_discard, _lentbl, _lenhashs, _local = "discard", newtable(0,2048), newtable(2048,0)
-_lenhashs[1] = 1
-
-local function _discard()
-	_local = _lenhashs[1]
-	for i = 2, _local do
-		_lentbl[ _lenhashs[i] ] = nil
-		_lenhashs[i] = nil
-	end
-	_lenhashs[1] = 1
-end
-
+local _lentbl, l = newtable(0,8192), 0
 local LENMETA = {
-	__index = function(self,key)
-		if key == str_discard then
-			return _discard
-		else
-			_local = _lenhashs[1] + 1
-			_lenhashs[1] = _local
-			_lenhashs[_local] = key
-			
-			_local = #key
-			self[key] = _local
-			return _local
-		end
+	__index = function(_,key)
+		local l = #key
+		_lentbl[key] = l
+		return l
 	end
 }
 
 M.newtable = newtable
-M.LEN = smt(_lentbl, LENMETA)
-M.tableupdatesize = function(t)
-	_lentbl[t] = nil
-	_local = _lentbl[t]
-end
+M.tableupdatesize = function(t) _lentbl[t] = #t end
 M.tableappend = function(t,value)
-	_local = _lentbl[t] + 1
-	_lentbl[t] = _local
-	t[_local] = value
+	l = _lentbl[t] + 1
+	_lentbl[t] = l
+	t[l] = value
 end
+M.lcdiscard = function() _lentbl = newtable(0,8192); gc(s) end
+M.LEN = smt(_lentbl, LENMETA)
 
 return M
