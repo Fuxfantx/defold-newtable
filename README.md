@@ -23,7 +23,7 @@ Defold Lua Table utils for usages below:
 --   newtable(narr,nrec)        -> Create a Lua Table with specified ArrayPart size and HashPart size.
 --   tableupdatesize(table)        -> Update the length cache.
 --   tableappend(table,value)    -> Append an element, and then update the length cache.
---   LEN.discard()                -> Discard the current length cache.
+--   lcdiscard()                -> Discard the current length cache.
 --   LEN[table]                    -> Replace "#table" with this.
 
 local tu = require("tableutil.main")
@@ -50,6 +50,6 @@ TableUpdateSize(t1)
 print( #t1 )
 print( LEN[t1] )
 
-LEN.discard()
+lcdiscard()
 pprint(LEN)
 ```
