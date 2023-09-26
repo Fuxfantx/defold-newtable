@@ -41,7 +41,6 @@ end
 local t1 = NewTable(4,0)
 for i = 1,4 do TableAppend(t1,i) end
 print( LEN[t1] )
-print( LEN.discard )
 
 for i = 1, LEN[t1] do
 	t1[i] = nil
